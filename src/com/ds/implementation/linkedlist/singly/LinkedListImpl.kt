@@ -4,7 +4,7 @@ import com.ds.implementation.linkedlist.common.LinkedListOperation
 import com.ds.implementation.linkedlist.common.Node
 
 class LinkedListImpl<T>(private var head: ListNode<T>?) : LinkedListOperation<T> {
-    override fun insert(t: T) {
+    override fun insert(t: T): Boolean {
         if (head == null) {
             head = ListNode(t)
         } else {
@@ -12,13 +12,13 @@ class LinkedListImpl<T>(private var head: ListNode<T>?) : LinkedListOperation<T>
             head = ListNode(t)
             head?.next = current
         }
+        return true
     }
 
     override fun insertAtPosition(t: T, position: Int): Boolean {
         if (position == -1) return false
         if (position == 0 || head == null) {
-            insert(t)
-            return true
+            return insert(t)
         }
         var index = 0
         var current = head
@@ -41,8 +41,7 @@ class LinkedListImpl<T>(private var head: ListNode<T>?) : LinkedListOperation<T>
 
     override fun insertAfterNode(t: T, node: Node<T>): Boolean {
         if (head == null) {
-            insert(t)
-            return true
+            return insert(t)
         }
         var index = 0
         var current = head
@@ -163,8 +162,7 @@ class LinkedListImpl<T>(private var head: ListNode<T>?) : LinkedListOperation<T>
         var current = head
         var prev: ListNode<T>? = null
         var next: ListNode<T>? = null
-        while (current != null)
-        {
+        while (current != null) {
             next = current.next
             current.next = prev
             prev = current

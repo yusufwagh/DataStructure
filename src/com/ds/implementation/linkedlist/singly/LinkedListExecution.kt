@@ -1,4 +1,4 @@
-package com.ds.implementation.linkedlist
+package com.ds.implementation.linkedlist.singly
 
 import com.ds.implementation.linkedlist.common.Node
 import com.ds.implementation.linkedlist.singly.LinkedListImpl
