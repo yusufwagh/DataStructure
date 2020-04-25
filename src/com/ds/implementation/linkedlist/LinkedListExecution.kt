@@ -1,5 +1,6 @@
 package com.ds.implementation.linkedlist
 
+import com.ds.implementation.linkedlist.common.Node
 import com.ds.implementation.linkedlist.singly.LinkedListImpl
 import com.ds.implementation.linkedlist.singly.ListNode
 
@@ -17,7 +18,10 @@ fun main() {
 
     val impl = LinkedListImpl(node1)
     impl.print()
-    println("Search Result "+impl.searchByValue(3)?.value)
+    println("Search Result "+impl.searchByValue(3))
+    println("Search Result "+impl.searchByValue(33))
+    println("Search Result "+impl.searchByNode(Node(5)))
+    println("Search Result "+impl.searchByNode(Node(11)))
     impl.print("========Before Insertion=============")
     impl.insert(0)
     impl.print("========Insertion 0=============")

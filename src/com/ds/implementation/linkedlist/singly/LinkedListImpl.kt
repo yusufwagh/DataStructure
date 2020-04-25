@@ -63,26 +63,30 @@ class LinkedListImpl<T>(private var head: ListNode<T>?) : LinkedListOperation<T>
         return false
     }
 
-    override fun searchByValue(t: T): Node<T>? {
+    override fun searchByValue(t: T): Int {
         var current = head
+        var index = 0
         while (current != null) {
             if (t == current.value) {
-                return Node(t)
+                return index
             }
+            index++
             current = current.next
         }
-        return null
+        return -1
     }
 
-    override fun searchByNode(node: Node<T>): Node<T>? {
+    override fun searchByNode(node: Node<T>): Int {
         var current = head
+        var index = 0
         while (current != null) {
             if (node.value == current.value) {
-                return node
+                return index
             }
+            index++
             current = current.next
         }
-        return null
+        return -1
     }
 
     override fun delete(): Boolean {
