@@ -1,64 +1,62 @@
-package com.ds.implementation.linkedlist.singly
+package com.ds.implementation.linkedlist.doubly
 
 import com.ds.implementation.linkedlist.common.LinkedListOperation
 import com.ds.implementation.linkedlist.common.Node
 
-class LinkedListImpl<T>(private var head: ListNode<T>?) : LinkedListOperation<T> {
+class DoublyLinkedListImpl<T>(private var head: DListNode<T>?) : LinkedListOperation<T> {
     override fun insert(t: T): Boolean {
+        val node = DListNode(t)
         if (head == null) {
-            head = ListNode(t)
+            head = node
         } else {
             val current = head
-            head = ListNode(t)
-            head?.next = current
+            current?.prev = node
+            node.next = current
+            head = node
         }
         return true
     }
 
     override fun insertAtPosition(t: T, position: Int): Boolean {
         if (position == -1) return false
-        if (position == 0 || head == null) {
-            return insert(t)
-        }
-        var index = 0
+        if (position == 0) return insert(t)
         var current = head
-        val iNode = ListNode(t)
-        var prev = head
-
+        var index = 0
+        var prev = current?.prev
+        val node = DListNode(t)
         while (current != null) {
-            if (position == index) {
-                prev?.next = iNode
-                iNode.next = current
+            if (index == position) {
+                prev = current.prev
+                current.prev = node
+                node.prev = prev
+                node.next = current
+                prev?.next = node
                 return true
             }
-            prev = current
             current = current.next
             index++
         }
-        prev?.next = iNode
+        prev?.next = node
+        node.prev = prev
         return true
     }
 
     override fun insertAfterNode(t: T, node: Node<T>): Boolean {
-        if (head == null) {
-            return insert(t)
-        }
-        var index = 0
+        if (head == null || head?.value == 0 == node.value) return insert(t)
         var current = head
-        val iNode = ListNode(t)
-        var prev = head
+        val newNode = DListNode(t)
         while (current != null) {
             if (node.value == current.value) {
                 val next = current.next
-                current.next = iNode
-                iNode.next = next
+                newNode.next = next
+                newNode.prev = current
+                newNode.next = next
+                current.next = newNode
+                next?.prev = newNode
                 return true
             }
-            prev = current
             current = current.next
-            index++
         }
-        prev?.next = iNode
         return false
     }
 
@@ -76,41 +74,44 @@ class LinkedListImpl<T>(private var head: ListNode<T>?) : LinkedListOperation<T>
     }
 
     override fun searchByNode(node: Node<T>): Int {
-       return searchByValue(node.value)
+        return searchByValue(node.value)
     }
 
     override fun delete(): Boolean {
         if (head == null) return false
-        val newHead = head?.next
-        head = null
-        head = newHead
+        val next = head?.next
+        head = next
         return true
     }
 
     override fun deleteAtPosition(position: Int): Boolean {
-        if (position == -1) return false
-        if (position == 0) delete()
-        var index = 0
+        if (head == null) return false
+        if (position == 0) return delete()
         var current = head
-        var prev = head
-
+        var index = 0
         while (current != null) {
             if (position == index) {
+                val next = current.next
+                val prev = current.prev
                 prev?.next = current.next
+                next?.prev = current.prev
                 return true
             }
-            prev = current
-            current = current.next
             index++
+            current = current.next
         }
         return false
     }
 
     override fun deleteAfterNode(node: Node<T>): Boolean {
+        if (head == null) return false
+        if (head?.value == node.value) return delete()
         var current = head
         while (current != null) {
-            if (node.value == current.value) {
-                current.next = current.next?.next
+            if (current.value == node.value) {
+                val next = current.next
+                current.next = next?.next
+                next?.next?.prev = next?.prev
                 return true
             }
             current = current.next
@@ -120,32 +121,38 @@ class LinkedListImpl<T>(private var head: ListNode<T>?) : LinkedListOperation<T>
 
     override fun deleteNode(node: Node<T>): Boolean {
         if (head == null) return false
-        if (node.value == head?.value) {
-            delete()
-            return true
-        }
+        if (head?.value == node.value) return delete()
         var current = head
-        var prev = head
-
         while (current != null) {
             if (current.value == node.value) {
-                prev?.next = current.next
+                val prev = current.prev
+                val next = current.next
+                prev?.next = next
+                next?.prev = prev
                 return true
             }
-            prev = current
             current = current.next
         }
         return false
     }
 
+    override fun print(msg: String?) {
+        msg?.let { println(it) }
+        var current = head
+        do {
+            kotlin.io.print("|${current?.value}|<->")
+            current = current?.next
+        } while (current != null)
+        kotlin.io.print("X")
+        println()
+    }
+
     override fun nodeAtIndex(index: Int): Node<T>? {
         var current = head
-        var counter = 0
         while (current != null) {
-            if (counter == index) {
+            if (current.value == index) {
                 return current
             }
-            counter++
             current = current.next
         }
         return null
@@ -153,25 +160,16 @@ class LinkedListImpl<T>(private var head: ListNode<T>?) : LinkedListOperation<T>
 
     override fun reverse() {
         var current = head
-        var prev: ListNode<T>? = null
-        var next: ListNode<T>? = null
+        var prev: DListNode<T>? = null
+        var next: DListNode<T>? = null
         while (current != null) {
             next = current.next
             current.next = prev
+            prev?.prev = current
             prev = current
             current = next
         }
         head = prev
     }
 
-    override fun print(msg: String?) {
-        msg?.let { println(it) }
-        var current = head
-        do {
-            kotlin.io.print("|${current?.value}|->")
-            current = current?.next
-        } while (current != null)
-        kotlin.io.print("X")
-        println()
-    }
 }

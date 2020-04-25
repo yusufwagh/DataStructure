@@ -1,8 +1,6 @@
 package com.ds.implementation.linkedlist.singly
 
 import com.ds.implementation.linkedlist.common.Node
-import com.ds.implementation.linkedlist.singly.LinkedListImpl
-import com.ds.implementation.linkedlist.singly.ListNode
 
 
 fun main() {
@@ -45,6 +43,8 @@ fun main() {
     impl.print("========Delete node at position 1=============")
     impl.deleteAtPosition(4)
     impl.print("========Delete node at position 4=============")
+    impl.nodeAtIndex(2)?.let { println("Node at index 2 -> |${it.value}|") }
+    impl.nodeAtIndex(22)?.let { println("Node at index 2 -> |${it.value}|") }?:println("No node found at Index 22")
     impl.reverse()
     impl.print("Linked list reversed")
 
