@@ -47,5 +47,6 @@ fun main() {
     impl.nodeAtIndex(22)?.let { println("Node at index 2 -> |${it.value}|") }?:println("No node found at Index 22")
     impl.reverse()
     impl.print("Linked list reversed")
+    impl.palindrome()
 
 }

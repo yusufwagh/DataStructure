@@ -13,4 +13,5 @@ interface LinkedListOperation<T> : BaseOperation {
     fun deleteAfterNode(node: Node<T>): Boolean
     fun deleteNode(node: Node<T>): Boolean
     fun nodeAtIndex(index: Int): Node<T>?
+    fun reverse()
 }

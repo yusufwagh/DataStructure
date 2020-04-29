@@ -164,6 +164,35 @@ class LinkedListImpl<T>(private var head: ListNode<T>?) : LinkedListOperation<T>
         head = prev
     }
 
+
+    fun palindrome(){
+        var current = head
+        var c = ListNode(head?.value)
+        var prev: ListNode<T>? = null
+        var next: ListNode<T>? = null
+        while (current?.next != null) {
+            var newNode = ListNode(current.next!!.value)
+            newNode.next = prev
+            prev = newNode
+            current = next
+        }
+        var valid = head
+        var reverse = c
+        var isPalindrome = true
+
+        while (reverse!=null && valid != null)
+        {
+            if(reverse.value != valid.value)
+            {
+                isPalindrome = false
+            }
+            reverse = reverse.next!!
+            valid = valid.next!!
+
+        }
+        println("Is Palindrome $isPalindrome")
+    }
+
     override fun print(msg: String?) {
         msg?.let { println(it) }
         var current = head
