@@ -1,4 +1,4 @@
-package com.ds.implementation.stack
+package com.ds.implementation.stack.common
 
 import com.ds.implementation.common.BaseOperation
 

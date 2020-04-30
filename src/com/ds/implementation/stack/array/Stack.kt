@@ -1,4 +1,6 @@
-package com.ds.implementation.stack
+package com.ds.implementation.stack.array
+
+import com.ds.implementation.stack.common.StackOperation
 
 class Stack<T>(private val size: Int) : StackOperation<T> {
 

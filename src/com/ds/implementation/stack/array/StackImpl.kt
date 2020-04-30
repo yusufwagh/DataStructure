@@ -1,4 +1,4 @@
-package com.ds.implementation.stack
+package com.ds.implementation.stack.array
 
 fun main() {
     val stack = Stack<Int>(10)
@@ -29,7 +29,8 @@ fun main() {
     stack.pop()
     stack.pop()
     println("1 -> ${stack.pop()}")
-    stack.print("Pop till 10")
+    stack.print("Pop 9 entries")
+    stack.print("Pop top 1")
     println("${stack.pop()}")
-    stack.print("Pop till 11")
+    stack.print("Print after Pop")
 }
