@@ -12,4 +12,3 @@ Data structure implementation in Kotlin
 * [PriorityQueue with Array](https://github.com/yusufwagh/DataStructure/blob/master/src/com/ds/implementation/priorityqueue/array/PriorityQueue.kt)
 * [PriorityQueue with Linked List](https://github.com/yusufwagh/DataStructure/blob/master/src/com/ds/implementation/priorityqueue/linkedlist/PriorityQueue.kt)
 
-More are coming soon.
