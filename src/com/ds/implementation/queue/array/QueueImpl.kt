@@ -5,15 +5,10 @@ fun main() {
 
     queue.enqueue(11)
     queue.enqueue(10)
+    queue.print("After enqueuing 11 and 10")
     for (i in 1..9)
-    queue.enqueue(i)
-
-    queue.print("Before enqueuing 9")
-    queue.dequeue()
-    queue.dequeue()
-    queue.enqueue(9)
-    queue.enqueue(10)
-    queue.print("After enqueuing 9 and 10")
+        queue.enqueue(i)
+    queue.print("After enqueuing 1 to 9")
     for (i in 0..12)
         queue.dequeue()
     queue.print("After dequeue all items")

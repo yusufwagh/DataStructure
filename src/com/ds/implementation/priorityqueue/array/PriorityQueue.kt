@@ -1,22 +1,38 @@
-package com.ds.implementation.queue.array
+package com.ds.implementation.priorityqueue.array
 
-import com.ds.implementation.queue.common.QueueOperation
+import com.ds.implementation.priorityqueue.common.PriorityQueueNode
+import com.ds.implementation.priorityqueue.common.PriorityQueueOperation
 
-class Queue<T>(private val size: Int = 10) : QueueOperation<T> {
+class PriorityQueue<T>(private val size: Int = 10) : PriorityQueueOperation<T> {
 
-    private val queue = Array<QueueNode<T>?>(size) { null }
+    private val priorityQueue = Array<PriorityQueueNode<T>?>(size) { null }
 
     private var front = -1
     private var rear = -1
 
 
-    override fun enqueue(value: T): Boolean {
+    override fun enqueue(value: PriorityQueueNode<T>): Boolean {
         if (isFull()) {
             printWaringMessage("Failed to enqueue $value as Queue is full")
             return false
         }
-        if (front == -1) front++
-        queue[++rear] = QueueNode(value)
+        if (front == -1) {
+            front++
+            rear++
+            priorityQueue[front] = value
+            return true
+        }
+        for(i in rear downTo front) {
+            if (value.priority > priorityQueue[i]?.priority!!) {
+                for (j in (front) downTo i)
+                {
+                    priorityQueue[j+1] = priorityQueue[j]
+                }
+                priorityQueue[i] = value
+                break
+            }
+        }
+        priorityQueue[++rear] = value
         return true
     }
 
@@ -25,16 +41,18 @@ class Queue<T>(private val size: Int = 10) : QueueOperation<T> {
             printWaringMessage("Failed to dequeue as Queue is empty")
             return false
         }
+
         front++
         return true
     }
 
-    override fun peek(): T? {
+
+    override fun peek(): PriorityQueueNode<T>? {
         if (isEmpty()) {
             printWaringMessage("Failed to Peek as Queue is empty")
             return null
         }
-        return queue[front]?.value
+        return priorityQueue[front]
     }
 
     override fun isEmpty(): Boolean {
@@ -59,8 +77,8 @@ class Queue<T>(private val size: Int = 10) : QueueOperation<T> {
             return
         }
         for (index in front .. rear) {
-            if (queue[index] != null)
-                println("Position $index Entry -> ${queue[index]?.value}")
+            if (priorityQueue[index] != null)
+                println("Position $index Entry -> ${priorityQueue[index]?.value} and Priority ${priorityQueue[index]?.priority}")
         }
     }
 
@@ -68,5 +86,3 @@ class Queue<T>(private val size: Int = 10) : QueueOperation<T> {
         msg?.let { println(it) }
     }
 }
-
-data class QueueNode<T>(val value: T)
