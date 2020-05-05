@@ -9,7 +9,7 @@ Data structure implementation in Kotlin
 * [Stack with Linked List](https://github.com/yusufwagh/DataStructure/blob/master/src/com/ds/implementation/stack/linkedList/Stack.kt)
 * [Queue with Array](https://github.com/yusufwagh/DataStructure/blob/master/src/com/ds/implementation/queue/array/Queue.kt)
 * [Queue with Linked List](https://github.com/yusufwagh/DataStructure/blob/master/src/com/ds/implementation/priorityqueue/linkedlist/Queue.kt)
-* [Queue with Array](https://github.com/yusufwagh/DataStructure/blob/master/src/com/ds/implementation/priorityqueue/array/PriorityQueue.kt)
-* [Queue with Linked List](https://github.com/yusufwagh/DataStructure/blob/master/src/com/ds/implementation/queue/linkedlist/PriorityQueue.kt)
+* [PriorityQueue with Array](https://github.com/yusufwagh/DataStructure/blob/master/src/com/ds/implementation/priorityqueue/array/PriorityQueue.kt)
+* [PriorityQueue with Linked List](https://github.com/yusufwagh/DataStructure/blob/master/src/com/ds/implementation/priorityqueue/linkedlist/PriorityQueue.kt)
 
 More are coming soon.
