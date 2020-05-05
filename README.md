@@ -8,5 +8,6 @@ Data structure implementation in Kotlin
 * [Stack with Array](https://github.com/yusufwagh/DataStructure/blob/master/src/com/ds/implementation/stack/array/Stack.kt)
 * [Stack with Linked List](https://github.com/yusufwagh/DataStructure/blob/master/src/com/ds/implementation/stack/linkedList/Stack.kt)
 * [Queue with Array](https://github.com/yusufwagh/DataStructure/blob/master/src/com/ds/implementation/queue/array/Queue.kt)
+* [Queue with Linked List](https://github.com/yusufwagh/DataStructure/blob/master/src/com/ds/implementation/queue/linkedlist/Queue.kt)
 
 More are coming soon.
