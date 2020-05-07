@@ -9,7 +9,7 @@ class HashTable<K, V>(private val size: Int) : HashTableOperations<K,V>{
     private fun createKey(key: K): Int = abs(key.hashCode() % size)
 
 
-    override fun add(key: K, value: V) {
+    override fun put(key: K, value: V) {
         val hashNode = HashNode(key, value)
         val hashKey = createKey(key)
         if(table[hashKey] == null)
@@ -79,11 +79,11 @@ class HashTable<K, V>(private val size: Int) : HashTableOperations<K,V>{
 fun main() {
     //Name and Age
     val table = HashTable<String, Int>(10)
-    table.add("John", 32)
-    table.add("Sam", 22)
-    table.add("Asm", 22)
-    table.add("Jimmy", 11)
-    table.add("Adam", 23)
+    table.put("John", 32)
+    table.put("Sam", 22)
+    table.put("Asm", 22)
+    table.put("Jimmy", 11)
+    table.put("Adam", 23)
     table.print()
     table.remove("Sam")
     table.print("After removing Sam")
